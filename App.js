@@ -6,7 +6,16 @@ import React from 'react';
 
 class App extends React.Component {
 	render(){
-		return <div>Hello World</div>
+		// render is only allowed to return a single node
+		// this is because JSX is a function React.createElement
+		// cannot return two functions.  
+		//To resolve wrap into single node
+		return (
+			<div>
+				<h1>Hello World</h1>
+				<b>bold</b>
+			</div>
+			);
 	}
 }
 
