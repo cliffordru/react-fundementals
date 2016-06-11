@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+//Owner Ownee relationship 
 class App extends React.Component{
 	constructor(){
 		super(); // give context to this
@@ -9,6 +10,7 @@ class App extends React.Component{
 			txt: 'this is the state txt',
 			cat: 0
 		} // set state to an object
+		this.update = this.update.bind(this) // So we can change onChange with shorthand
 	}
 	update(e){ // manage state; take in an event
 		this.setState({txt: e.target.value})
@@ -17,12 +19,23 @@ class App extends React.Component{
 	render(){
 		return (
 			<div>
-			<input type="text" 
-				onChange={this.update.bind(this)} />
-			<h1>{this.state.txt}</h1>
+				<Widget txt={this.state.txt} update={this.update} />
+				<Widget txt={this.state.txt} update={this.update} />
+				<Widget txt={this.state.txt} update={this.update} />
 			</div>
 			)
 	}
+}
+
+// adding a stateless component
+const Widget = (props) => {
+	return (
+			<div>
+			<input type="text" 
+				onChange={props.update} />
+			<h1>{props.txt}</h1>
+			</div>
+			)
 }
 
 ReactDOM.render(
