@@ -2,6 +2,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// Access child properties - angular transclusion
+class App extends React.Component{
+	render(){
+		return (
+			<Button>I <Heart/> React</Button>
+		)
+	}
+}
+
+class Button extends React.Component{
+	render(){
+		return <button>{this.props.children}</button>
+	}
+}
+
+const Heart = () => <span className="glyphicon glyphicon-heart">
+GLYPH-HEART</span>
+
+ReactDOM.render(
+	<App />,
+	document.getElementById('app')
+);
+
+//export default App
+
+/*  PREVIOUS STUFF...
+
 //Owner Ownee relationship 
 class App extends React.Component{
 	constructor(){
@@ -58,9 +85,10 @@ ReactDOM.render(
 	document.getElementById('app')
 );
 
-//export default App
 
-/*  PREVIOUS STUFF...
+
+
+
 
 import React from 'react';
 import ReactDOM from 'react-dom';
