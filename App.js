@@ -5,6 +5,48 @@ import ReactDOM from 'react-dom';
 // Component lifecycle - mounting basics
 class App extends React.Component{
 	constructor(){
+		super();		
+		this.update = this.update.bind(this);
+		this.state = {increasing: false};
+	}
+	update(){
+		ReactDOM.render(
+			<App val={this.props.val+1} />,
+			document.getElementById('app')
+		);
+	}
+	componentWillReceiveProps(nextProps){
+		this.setState({increasing: nextProps.val > this.props.val})
+	}
+	shouldComponentUpdate(nextProps, nextState) {
+	  return nextProps.val % 5 === 0;
+	}
+	render(){
+		console.log(this.state.increasing)		
+		return (
+		<button onClick={this.update}>
+		{this.props.val}
+		</button>)
+	}
+	componentDidUpdate(prevProps, prevState) {
+	  console.log('prevProps', prevProps)
+	}
+}
+
+App.defaultProps = {val: 0}
+
+ReactDOM.render(
+	<App />,
+	document.getElementById('app')
+);
+
+//export default App
+// export default Wrapper
+
+/*  PREVIOUS STUFF...
+
+class App extends React.Component{
+	constructor(){
 		super();
 		this.state = {val: 0};
 		this.update = this.update.bind(this);
@@ -57,10 +99,6 @@ ReactDOM.render(
 	document.getElementById('app')
 );
 
-//export default App
-// export default Wrapper
-
-/*  PREVIOUS STUFF...
 
 // Access child properties - angular transclusion
 class App extends React.Component{
